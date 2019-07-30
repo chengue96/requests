@@ -7,7 +7,7 @@
 				|__|  |__| |__| |__|\__\ 
                          
 	= Tarot Event v2016
-	= by Mikéias
+	= by MikÃ©ias
 	= brAthena
 	= User: http://forum.brathena.org/index.php/user/11630-mikeias/
 
@@ -16,24 +16,24 @@
 prontera,128,329,4	script	Evento do Destino	4_M_BARD,{
 
 	mes "[Evento do Destino]";
-	mes "Olá "+strcharinfo(0);
-	mes "Está afim de testar sua sorte nas cartas? Fique atento quando anunciar o início do evento.";
+	mes "OlÃ¡ "+strcharinfo(0);
+	mes "EstÃ¡ afim de testar sua sorte nas cartas? Fique atento quando anunciar o inÃ­cio do evento.";
 	next;
-	switch(select("Participar do evento", ( getgroupid() >= $@lvminGM ? ( !$tarot_status ? "Ligar":"Desligar")+" Evento":"") , "Premiação", "Não quero participar")){
+	switch(select("Participar do evento", ( getgroupid() >= $@lvminGM ? ( !$tarot_status ? "Ligar":"Desligar")+" Evento":"") , "PremiaÃ§Ã£o", "NÃ£o quero participar")){
 	
 		case 1:
-			// = Se evento não ativo
+			// = Se evento nÃ£o ativo
 			if (!$tarot_status){
 				mes "[Evento do Destino]";
-				mes "Senhor"+(Sex? "":"a")+", no momento o evento não está atívo! Nós avisaremos quando o evento começar.";
+				mes "Senhor"+(Sex? "":"a")+", no momento o evento nÃ£o estÃ¡ atÃ­vo! NÃ³s avisaremos quando o evento comeÃ§ar.";
 				close;
 			}
 			
-			// = Verifica se o nome do personagem já está no array
+			// = Verifica se o nome do personagem jÃ¡ estÃ¡ no array
 			for (set .@i,0; .@i < getarraysize($@tarot_participantes$); set .@i,.@i + 1) {
 				if ( $@tarot_participantes$[.@i] == strcharinfo(0) ) {
 				mes "[Evento do Destino]";
-				mes "Tenha calma "+strcharinfo(0)+"! Nós ainda não estamos prontos para você, aguarde um momento.";
+				mes "Tenha calma "+strcharinfo(0)+"! NÃ³s ainda nÃ£o estamos prontos para vocÃª, aguarde um momento.";
 				next;
 				warp "force_1-1",100,100;
 				close;
@@ -41,10 +41,10 @@ prontera,128,329,4	script	Evento do Destino	4_M_BARD,{
 			}
 		
 			mes "[Evento do Destino]";
-			mes "Tudo certo, anotei a sua participação aqui! Em breve você será chamado para que o evento seja iniciado.";
+			mes "Tudo certo, anotei a sua participaÃ§Ã£o aqui! Em breve vocÃª serÃ¡ chamado para que o evento seja iniciado.";
 			// = Adiciona o nome do personagem ao array
 			set $@tarot_participantes$[getarraysize($@tarot_participantes$)], strcharinfo(0);
-			//message strcharinfo(0), strnpcinfo(1)+" Meus parabéns! Você se registrou com êxito para participar do evento.";
+			//message strcharinfo(0), strnpcinfo(1)+" Meus parabÃ©ns! VocÃª se registrou com Ãªxito para participar do evento.";
 			//announce strnpcinfo(1)+" <"+strcharinfo(0)+"> registrou-se para participar do evento!",bc_all;
 			next;
 			warp "force_1-1",100,100;
@@ -53,12 +53,12 @@ prontera,128,329,4	script	Evento do Destino	4_M_BARD,{
 		case 2:
 			if( agitcheck() || agitcheck2() ){
 				mes "[Evento do Destino]";
-				mes "Neste momento a Guerra do Emperium está atíva e não é possível dar início ao evento!";
+				mes "Neste momento a Guerra do Emperium estÃ¡ atÃ­va e nÃ£o Ã© possÃ­vel dar inÃ­cio ao evento!";
 				close;
 			}
 			mes "[Evento do Destino]";
-			mes "Olá, Game-Master! Você tem certeza que deseja "+( !$tarot_status ? "Ligar":"Desligar")+" o evento?";
-			if(select("Não:Tenho certeza") == 1) close;
+			mes "OlÃ¡, Game-Master! VocÃª tem certeza que deseja "+( !$tarot_status ? "Ligar":"Desligar")+" o evento?";
+			if(select("NÃ£o:Tenho certeza") == 1) close;
 			if ( !$tarot_status ){
 				donpcevent "Tarot Event::OnStart";
 			}else
@@ -68,7 +68,7 @@ prontera,128,329,4	script	Evento do Destino	4_M_BARD,{
 			
 		case 3:
 			mes "[Evento do Destino]";
-			mes "O participante que não for atingido pela carta 'Coma' receberá pontos de evento e recompensas aleatórias.";
+			mes "O participante que nÃ£o for atingido pela carta 'Coma' receberÃ¡ pontos de evento e recompensas aleatÃ³rias.";
 			close;
 		
 		case 4:
@@ -80,13 +80,13 @@ prontera,128,329,4	script	Evento do Destino	4_M_BARD,{
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	//set "[Evento do Destino]", "^800000"+strnpcinfo(1)+"^000000";
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-	setarray $@mapeventtarot$, "poring_w01", 102, 71;	// = Configuração do mapa do evento
+	setarray $@mapeventtarot$, "poring_w01", 102, 71;	// = ConfiguraÃ§Ã£o do mapa do evento
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-	set $@mintarot_participantes,2;	// = Número mínimo de participantes para iniciar o evento
+	set $@mintarot_participantes,2;	// = NÃºmero mÃ­nimo de participantes para iniciar o evento
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-	set $@lvminGM, 60;	// = Level mínimo de GM para ligar/desligar o evento
+	set $@lvminGM, 60;	// = Level mÃ­nimo de GM para ligar/desligar o evento
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-	// = ATENÇÃO: CADA ITEM TEM SUA QUANTIDADE
+	// = ATENÃ‡ÃƒO: CADA ITEM TEM SUA QUANTIDADE
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	
 	callfunc ("resetEventoTarot", $@tarot_participantes$, $@mapeventtarot$[0]);
@@ -100,37 +100,34 @@ prontera,128,329,4	script	Evento do Destino	4_M_BARD,{
 
 -	script	Tarot Event	-1,{
 
-	// = Início automático
-	OnWhisperGlobal:
-	input @pass;
-	if(@pass != 1324) end;
+	// = InÃ­cio automÃ¡tico
 	OnClock0500:
 	OnClock1700:
 
 	
-	// = Início manual
+	// = InÃ­cio manual
 	OnStart:
 	set $tarot_status,1;
 	
-		announce "[NPC] Evento do Destino: As inscrições para o evento estão abertas! Vocês tem 5 minutos para participar. Digite @evt para participar.",bc_all;
+		announce "[NPC] Evento do Destino: As inscriÃ§Ãµes para o evento estÃ£o abertas! VocÃªs tem 5 minutos para participar. Digite @evt para participar.",bc_all;
 		sleep 60000;
-		announce "[NPC] Evento do Destino: As inscrições para o evento estão abertas! Vocês tem 4 minutos para participar. Digite @evt para participar.",bc_all;
+		announce "[NPC] Evento do Destino: As inscriÃ§Ãµes para o evento estÃ£o abertas! VocÃªs tem 4 minutos para participar. Digite @evt para participar.",bc_all;
 		sleep 60000;
-		announce "[NPC] Evento do Destino: As inscrições para o evento estão abertas! Vocês tem 3 minutos para participar. Digite @evt para participar.",bc_all;
+		announce "[NPC] Evento do Destino: As inscriÃ§Ãµes para o evento estÃ£o abertas! VocÃªs tem 3 minutos para participar. Digite @evt para participar.",bc_all;
 		sleep 60000;
-		announce "[NPC] Evento do Destino: As inscrições para o evento estão abertas! Vocês tem 2 minutos para participar. Digite @evt para participar.",bc_all;
+		announce "[NPC] Evento do Destino: As inscriÃ§Ãµes para o evento estÃ£o abertas! VocÃªs tem 2 minutos para participar. Digite @evt para participar.",bc_all;
 		sleep 60000;
-		announce "[NPC] Evento do Destino: As inscrições para o evento estão abertas! Vocês tem 1 minuto para participar. Digite @evt para participar.",bc_all;
+		announce "[NPC] Evento do Destino: As inscriÃ§Ãµes para o evento estÃ£o abertas! VocÃªs tem 1 minuto para participar. Digite @evt para participar.",bc_all;
 		sleep 60000;
 		
 	
 	if ( getarraysize($@tarot_participantes$) < $@mintarot_participantes ){
-		announce "As inscrições para o Evento do Destino não foram suficientes para iniciar.",bc_all;
+		announce "As inscriÃ§Ãµes para o Evento do Destino nÃ£o foram suficientes para iniciar.",bc_all;
 		callfunc ("resetEventoTarot", $@tarot_participantes$, $@mapeventtarot$[0]);
 		end;
 	}
 
-	announce "[NPC] Evento do Destino: As inscrições para o evento foram encerradas. Boa sorte a todos os participantes!",bc_all;
+	announce "[NPC] Evento do Destino: As inscriÃ§Ãµes para o evento foram encerradas. Boa sorte a todos os participantes!",bc_all;
 	
 	set $tarot_status,0;
 	for(set .@p, 0; .@p < getarraysize($@tarot_participantes$); set .@p, .@p + 1){
@@ -173,7 +170,7 @@ prontera,128,329,4	script	Evento do Destino	4_M_BARD,{
 	if ( getarraysize($@tarot_participantes$)){
 		attachrid(getcharid(3, $@tarot_participantes$[0]));	// = Atacha o account_id apartir do nome
 		if ( strcharinfo(3) == $@mapeventtarot$[0] ){
-			announce "[NPC] Evento do Destino: O vencedor do evento é o jogador '"+$@tarot_participantes$[0]+"' parabéns!",bc_all;
+			announce "[NPC] Evento do Destino: O vencedor do evento Ã© o jogador '"+$@tarot_participantes$[0]+"' parabÃ©ns!",bc_all;
 			getitem 7227,1;
 			set #evento,#evento+10;
 			
@@ -194,7 +191,7 @@ prontera,128,329,4	script	Evento do Destino	4_M_BARD,{
 
 -	script	tarot_events	-1,{
 
-	// = Se o participante que deslogou ou morreu estiver no mapa do evento, seu nome será retirado do array de tarot_participantes
+	// = Se o participante que deslogou ou morreu estiver no mapa do evento, seu nome serÃ¡ retirado do array de tarot_participantes
 	OnPCLogoutEvent:
 	if ( strcharinfo(3) == $@mapeventtarot$[0] ){
 		for (set .@i,0; .@i < getarraysize($@tarot_participantes$); set .@i,.@i + 1) {
@@ -221,9 +218,9 @@ close;
 	
 	OnSpeak:
 	setarray .msgs$,
-		"Usarei a habilidade 'Destino nas Cartas' em cada um de vocês.",
-		"As rodadas serão de acordo com a ordem de inscrição no evento.",
-		"O vencedor será o último a sobreviver!",
+		"Usarei a habilidade 'Destino nas Cartas' em cada um de vocÃªs.",
+		"As rodadas serÃ£o de acordo com a ordem de inscriÃ§Ã£o no evento.",
+		"O vencedor serÃ¡ o Ãºltimo a sobreviver!",
 		"Boa sorte a todos os participantes!",
 		"TAROOOW!";
 
@@ -252,7 +249,7 @@ close;
 	
 }
 
-// = Reseta parâmetros
+// = Reseta parÃ¢metros
 function	script	resetEventoTarot	{
 
 	// @param0 = array dos tarot_participantes
